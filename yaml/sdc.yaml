@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sdc
+  labels:
+    app : sdc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sdc
+  template:
+    metadata:
+      labels:
+        app: sdc
+    spec:
+      containers:
+      - name : sdc
+        image: streamsets/datacollector:latest
+        ports:
+        - containerPort: 18630
+        env:
+        - name: SDC_JAVA_OPTS
+          value: "-Xmx2048m -Xms2048m"
+        volumeMounts:
+        - name: sdc-id
+          mountPath: /data/sdc.id
+          subPath: sdc.id
+        - name: sdc-auth-token
+          mountPath: /etc/sdc/application-token.txt
+          subPath: application-token.txt
+        - name: dpm-config
+          mountPath: /etc/sdc/dpm.properties
+          subPath: dpm.properties
+      volumes:
+      - name: sdc-id
+        secret:
+          secretName: sdc-id 
+      - name: sdc-auth-token
+        secret:
+          secretName: sdc-auth-token
+      - name: dpm-config
+        configMap:
+          name: dpm-config
