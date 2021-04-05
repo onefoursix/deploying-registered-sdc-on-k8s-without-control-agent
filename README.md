@@ -81,5 +81,5 @@ A couple of points to keep in mind:
   Note that you won't be able to reach that SDC in your Browser until you configure ingress for it (see the Ingress Examples [here](https://github.com/streamsets/tutorials/tree/master/tutorial-kubernetes-deployment/8-ingress)). 
   
 
-- You can test that the SDC's auth token remains valid by deleting the SDC's Pod and waiting for it get recreated.  The new Pod should resume heart-beating to Control Hub and function normally.
+- You can test that the SDC's auth token remains valid by deleting the SDC's Pod and waiting for it to get recreated.  The new SDC Pod should resume heart-beating to Control Hub and function normally.
    
