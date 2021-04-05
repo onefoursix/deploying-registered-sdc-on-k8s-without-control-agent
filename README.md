@@ -48,7 +48,7 @@ A couple of points to keep in mind:
   This ConfigMap will be mounted as <code>$SDC_CONF/dpm.properties</code>
     
 
-- Edit <code>yaml/sdc.yaml</code> and adjust the <code>env</code> properties as needed to set SDC's memory and other settings.
+- Edit <code>yaml/sdc.yaml</code> and adjust properties as needed.
 
 ### Deploy the Example
   
