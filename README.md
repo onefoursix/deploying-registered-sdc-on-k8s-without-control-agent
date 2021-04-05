@@ -1,4 +1,4 @@
-## sdc-on-k8s-without-control-agent
+## deploying-registered-sdc-on-k8s-without-control-agent
 
 ### Overview
 
@@ -12,7 +12,7 @@ A couple of points to keep in mind:
 
 - Only one instance of SDC per deployment is supported, in order to associate the SDC with its auth token. If multiple instances of SDC are needed, one can use multiple manual deployments of one instance each, or one can create a deployment with multiple instances using Control Agent.
 
-- HPA's are not supported.   If an HPA is needed, use Control Agent
+- HPA's are not supported.   If an HPA is needed, use Control Agent.
 
 
 ### Configure the Example
@@ -27,7 +27,7 @@ A couple of points to keep in mind:
         SCH_PASSWORD=<Control Hub password>          
         KUBE_NAMESPACE=<namespace for the SDC>
         
-  For example, my setting look like this::
+  For example, my settings look like this::
 
         SCH_ORG=schbrooks               
         SCH_URL=https://cloud.streamsets.com         
@@ -48,7 +48,7 @@ A couple of points to keep in mind:
   This ConfigMap will be mounted as <code>$SDC_CONF/dpm.properties</code>
     
 
-  Edit <code>yaml/sdc.yaml</code> and adjust the <code>env</code> properties as needed to set SDC's memory and other settings.
+- Edit <code>yaml/sdc.yaml</code> and adjust the <code>env</code> properties as needed to set SDC's memory and other settings.
 
 ### Deploy the Example
   
@@ -64,15 +64,15 @@ A couple of points to keep in mind:
   
    When you run the script you should see output like this:
 
-    $ ./deploy-sdc.sh
-    namespace/ns1 created
-    Context "mark-aks-1" modified.
-    Generated sdc.id 5ee148aa-ddef-4251-81e1-d37f47fabf24
-    secret/sdc-id created
-    Generated an Auth Token for SDC
-    secret/sdc-auth-token created
-    configmap/dpm-config created
-    deployment.apps/sdc created
+        $ ./deploy-sdc.sh
+        namespace/ns1 created
+        Context "mark-aks-1" modified.
+        Generated sdc.id 5ee148aa-ddef-4251-81e1-d37f47fabf24
+        secret/sdc-id created
+        Generated an Auth Token for SDC
+        secret/sdc-auth-token created
+        configmap/dpm-config created
+        deployment.apps/sdc created
         
   After a minute or so you should see the registered SDC show up in Control Hub's Execute >  Data Collector List, with the specified Labels:
   
